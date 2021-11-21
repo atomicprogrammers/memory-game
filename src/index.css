@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 /* base styles */
 body {
@@ -7,5 +7,5 @@ body {
   font-size: 1.2em;
   text-align: center;
   background: #eeeffe;
-  color: #fff;
+  color: #1d1d1f;
 }

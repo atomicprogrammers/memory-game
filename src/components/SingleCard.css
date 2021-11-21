@@ -5,3 +5,29 @@
   width: 100%;
   display: block;
 }
+
+/* Back of the card */
+
+.card .back {
+  cursor: pointer;
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+}
+
+/* Front of the card */
+
+.card .front {
+  transition: all ease-in 0.2s;
+  transform: rotateY(90deg);
+  position: absolute;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}

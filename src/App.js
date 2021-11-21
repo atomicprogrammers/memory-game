@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import SingleCard from "./components/SingleCard";
+import { useState, useEffect } from 'react';
+import './App.css';
+import SingleCard from './components/SingleCard';
 
 const cardImages = [
-  { src: "/assets/card-angry.png", matched: false },
-  { src: "/assets/card-frown.png", matched: false },
-  { src: "/assets/card-happy.png", matched: false },
-  { src: "/assets/card-joy.png", matched: false },
-  { src: "/assets/card-kiss.png", matched: false },
-  { src: "/assets/card-love.png", matched: false },
-  { src: "/assets/card-sad.png", matched: false },
-  { src: "/assets/card-smile.png", matched: false },
-  { src: "/assets/card-yawn.png", matched: false },
+  { src: '/assets/card-angry.png', matched: false },
+  { src: '/assets/card-frown.png', matched: false },
+  { src: '/assets/card-happy.png', matched: false },
+  { src: '/assets/card-joy.png', matched: false },
+  { src: '/assets/card-kiss.png', matched: false },
+  { src: '/assets/card-love.png', matched: false },
+  { src: '/assets/card-sad.png', matched: false },
+  { src: '/assets/card-smile.png', matched: false },
+  { src: '/assets/card-yawn.png', matched: false },
 ];
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -28,17 +29,22 @@ function App() {
 
     setCards(shuffledCards);
     setTurns(0);
+    setChoiceOne(null);
+    setChoiceTwo(null);
   };
+
+  // Start the game automaticlally
+  useEffect(() => shuffleCards(), []);
 
   // handle a choice
   const handleChoice = (card) => {
-    console.log(card);
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
   // compare 2 selected cards
   useEffect(() => {
     if (choiceOne && choiceTwo) {
+      setDisabled(true);
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -51,32 +57,38 @@ function App() {
         });
         resetTurn();
       } else {
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [choiceOne, choiceTwo]);
-
-  console.log(cards);
 
   // reset choices & increase turn
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
   };
 
   return (
-    <div className="App">
-      <div className="header">
+    <div className='App'>
+      <div className='header'>
         <h1>Magic Match</h1>
       </div>
       <button onClick={shuffleCards}>New Game</button>
 
-      <div className="card-grid">
+      <div className='card-grid'>
         {cards.map((card) => (
-          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
+          <SingleCard
+            key={card.id}
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
+          />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </div>
   );
 }
