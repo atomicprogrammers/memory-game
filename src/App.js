@@ -2,7 +2,17 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard";
 
-const cardImages = [{ src: "/img/helmet-1.png", matched: false }];
+const cardImages = [
+  { src: "/assets/card-angry.png", matched: false },
+  { src: "/assets/card-frown.png", matched: false },
+  { src: "/assets/card-happy.png", matched: false },
+  { src: "/assets/card-joy.png", matched: false },
+  { src: "/assets/card-kiss.png", matched: false },
+  { src: "/assets/card-love.png", matched: false },
+  { src: "/assets/card-sad.png", matched: false },
+  { src: "/assets/card-smile.png", matched: false },
+  { src: "/assets/card-yawn.png", matched: false },
+];
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -57,7 +67,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Match</h1>
+      <div className="header">
+        <h1>Magic Match</h1>
+      </div>
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
