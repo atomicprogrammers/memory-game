@@ -72,10 +72,16 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='header'>
-        <h1>Magic Match</h1>
-      </div>
-      <button onClick={shuffleCards}>New Game</button>
+      <header>
+        <div className='header'>
+          <h1>Magic Match</h1>
+        </div>
+        <button onClick={shuffleCards}>New Game</button>
+        <div className='game-score'>
+          <span className='best'>Best: 0</span>
+          <span className='score'>Score: {turns}</span>
+        </div>
+      </header>
 
       <div className='card-grid'>
         {cards.map((card) => (
@@ -88,7 +94,6 @@ function App() {
           />
         ))}
       </div>
-      <p>Turns: {turns}</p>
     </div>
   );
 }
