@@ -21,6 +21,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [highscore, setHighscore] = useState(0);
   const [won, setWon] = useState(false);
 
   // shuffle cards for new game
@@ -41,7 +42,8 @@ function App() {
   // Check whether user won
   useEffect(() => {
     cards.every((card) => card.matched === true) ? setWon(true) : setWon(false);
-  }, [cards]);
+    if (won) setHighscore(turns);
+  }, [cards, won, turns]);
 
   // handle a choice
   const handleChoice = (card) => {
