@@ -1,0 +1,31 @@
+.modal-backdrop {
+  position: absolute;
+  background-color: rgba(50, 50, 50, 0.88);
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #eeeffe;
+  padding: 60px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.modal-button {
+  display: flex;
+  gap: 30px;
+}
+
+.modal-button button {
+  padding: 10px 28px;
+}

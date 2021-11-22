@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import Modal from './components/Modal';
 import SingleCard from './components/SingleCard';
 
 const cardImages = [
@@ -72,6 +73,7 @@ function App() {
 
   return (
     <div className='App'>
+      {/* <Modal /> */}
       <header>
         <div className='header'>
           <h1>Magic Match</h1>

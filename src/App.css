@@ -18,17 +18,17 @@ h1 {
 
 button {
   margin-top: -5px;
-  background: #8b42e3;
-  border: none;
-  padding: 12px 24px;
+  border: 1px solid #c34ecc;
+  background-color: #eeeffe;
+  padding: 10px 24px;
   border-radius: 50px;
-  color: #fff;
+  color: #1d1d1f;
   cursor: pointer;
   font-size: 0.9em;
-  transition: all 0.3s;
 }
 button:hover {
-  background: #b316c0;
+  background: linear-gradient(135deg, #8b42e3 0, #b316c0 100%);
+  color: #fff;
 }
 .card-grid {
   margin-top: 40px;
