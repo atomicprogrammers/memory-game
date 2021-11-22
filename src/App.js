@@ -6,13 +6,13 @@ import SingleCard from './components/SingleCard';
 const cardImages = [
   { src: '/assets/card-angry.png', matched: false },
   { src: '/assets/card-frown.png', matched: false },
-  { src: '/assets/card-happy.png', matched: false },
-  { src: '/assets/card-joy.png', matched: false },
-  { src: '/assets/card-kiss.png', matched: false },
-  { src: '/assets/card-love.png', matched: false },
-  { src: '/assets/card-sad.png', matched: false },
-  { src: '/assets/card-smile.png', matched: false },
-  { src: '/assets/card-yawn.png', matched: false },
+  // { src: '/assets/card-happy.png', matched: false },
+  // { src: '/assets/card-joy.png', matched: false },
+  // { src: '/assets/card-kiss.png', matched: false },
+  // { src: '/assets/card-love.png', matched: false },
+  // { src: '/assets/card-sad.png', matched: false },
+  // { src: '/assets/card-smile.png', matched: false },
+  // { src: '/assets/card-yawn.png', matched: false },
 ];
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [won, setWon] = useState(false);
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -36,6 +37,11 @@ function App() {
 
   // Start the game automaticlally
   useEffect(() => shuffleCards(), []);
+
+  // Check whether user won
+  useEffect(() => {
+    cards.every((card) => card.matched === true) ? setWon(true) : setWon(false);
+  }, [cards]);
 
   // handle a choice
   const handleChoice = (card) => {
@@ -73,7 +79,7 @@ function App() {
 
   return (
     <div className='App'>
-      {/* <Modal /> */}
+      {won && <Modal />}
       <header>
         <div className='header'>
           <h1>Magic Match</h1>
