@@ -88,7 +88,7 @@ function App() {
         </div>
         <button onClick={shuffleCards}>New Game</button>
         <div className='game-score'>
-          <span className='best'>Best: 0</span>
+          <span className='best'>Best: {highscore}</span>
           <span className='score'>Score: {turns}</span>
         </div>
       </header>
