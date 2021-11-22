@@ -34,6 +34,7 @@ function App() {
     setTurns(0);
     setChoiceOne(null);
     setChoiceTwo(null);
+    setWon(false);
   };
 
   // Start the game automaticlally
@@ -81,7 +82,7 @@ function App() {
 
   return (
     <div className='App'>
-      {won && <Modal />}
+      {won && <Modal handleReset={shuffleCards} />}
       <header>
         <div className='header'>
           <h1>Magic Match</h1>
