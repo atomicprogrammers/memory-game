@@ -39,6 +39,7 @@ function App() {
     setChoiceTwo(null);
     setWon(false);
     setHint(false);
+    setNumberOfHint(3);
   };
 
   // Start the game automaticlally
