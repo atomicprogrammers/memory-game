@@ -85,7 +85,7 @@ function App() {
       {won && <Modal handleReset={shuffleCards} />}
       <header>
         <div className='header'>
-          <h1>Magic Match</h1>
+          <h1>Made for each other</h1>
         </div>
         <button onClick={shuffleCards}>New Game</button>
         <div className='game-score'>
