@@ -23,6 +23,7 @@ function App() {
   const [disabled, setDisabled] = useState(false);
   const [highscore, setHighscore] = useState(0);
   const [won, setWon] = useState(false);
+  const [hint, setHint] = useState(false);
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -35,6 +36,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setWon(false);
+    setHint(false);
   };
 
   // Start the game automaticlally
@@ -80,6 +82,12 @@ function App() {
     setDisabled(false);
   };
 
+  // Flip when asked for hint
+  const handleFlip = () => {
+    setHint(true);
+    setTimeout(() => setHint(false), 2000);
+  };
+
   return (
     <div className='App'>
       {won && <Modal handleReset={shuffleCards} />}
@@ -88,6 +96,7 @@ function App() {
           <h1>Made for each other</h1>
         </div>
         <button onClick={shuffleCards}>New Game</button>
+        <button onClick={handleFlip}>Hint</button>
         <div className='game-score'>
           <span className='best'>Best: {highscore}</span>
           <span className='score'>Score: {turns}</span>
@@ -100,7 +109,9 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            flipped={
+              card === choiceOne || card === choiceTwo || card.matched || hint
+            }
             disabled={disabled}
           />
         ))}
