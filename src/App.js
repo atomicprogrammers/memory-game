@@ -24,6 +24,8 @@ function App() {
   const [highscore, setHighscore] = useState(0);
   const [won, setWon] = useState(false);
   const [hint, setHint] = useState(false);
+  const [numberOfHint, setNumberOfHint] = useState(3);
+  const [disableHint, setDisableHint] = useState(false);
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -85,6 +87,8 @@ function App() {
   // Flip when asked for hint
   const handleFlip = () => {
     setHint(true);
+    if (numberOfHint === 1) setDisableHint(true);
+    setNumberOfHint((prevHint) => prevHint - 1);
     setTimeout(() => setHint(false), 2000);
   };
 
@@ -96,7 +100,9 @@ function App() {
           <h1>Made for each other</h1>
         </div>
         <button onClick={shuffleCards}>New Game</button>
-        <button onClick={handleFlip}>Hint</button>
+        <button disabled={disableHint} onClick={handleFlip}>
+          Hint: {numberOfHint}
+        </button>
         <div className='game-score'>
           <span className='best'>Best: {highscore}</span>
           <span className='score'>Score: {turns}</span>
